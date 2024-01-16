@@ -1,35 +1,35 @@
 {
-    "name": "example-codegen",
-    "version": "1.0.0",
-    "private": true,
-    "description": "Mercurius + GraphQL Code Generator example",
-    "keywords": [
-      "graphql-codegen"
-    ],
-    "license": "MIT",
-    "author": "PabloSz",
-    "main": "dist/index.js",
-    "scripts": {
-      "dev": "tsm src/listen.ts",
-      "start": "tsm --node-env=prod --cjs src/listen.ts",
-      "test": "cross-env NODE_ENV=test tap --node-arg=--require=bob-tsm"
-    },
-    "dependencies": {
-      "fastify": "^4.25.2",
-      "graphql": "^16.8.1",
-      "mercurius": "^13.3.3",
-      "mercurius-codegen": "^5.0.3"
-    },
-    "devDependencies": {
-      "@graphql-typed-document-node/core": "^3.2.0",
-      "@types/node": "^20.11.3",
-      "@types/tap": "^15.0.11",
-      "tsm": "^2.3.0",
-      "cross-env": "^7.0.3",
-      "esbuild": "^0.19.11",
-      "mercurius-integration-testing": "^8.1.1",
-      "prettier": "^2.8.8",
-      "tap": "^16.3.10",
-      "typescript": "^5.3.3"
-    }
+  "name": "example-codegen",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Mercurius + GraphQL Code Generator example",
+  "keywords": [
+    "graphql-codegen"
+  ],
+  "license": "MIT",
+  "author": "PabloSz",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsm src/app.ts",
+    "start": "tsm src/app.ts",
+    "test": "cross-env NODE_ENV=test tap --node-arg=--require=bob-tsm"
+  },
+  "dependencies": {
+    "fastify": "^4.25.2",
+    "graphql": "^16.8.1",
+    "mercurius": "^13.3.3",
+    "mercurius-codegen": "^5.0.3"
+  },
+  "devDependencies": {
+    "@graphql-typed-document-node/core": "^3.2.0",
+    "@types/node": "^20.11.3",
+    "@types/tap": "^15.0.11",
+    "tsm": "^2.3.0",
+    "cross-env": "^7.0.3",
+    "esbuild": "^0.19.11",
+    "mercurius-integration-testing": "^8.1.1",
+    "prettier": "^2.8.8",
+    "tap": "^16.3.10",
+    "typescript": "^5.3.3"
   }
+}
