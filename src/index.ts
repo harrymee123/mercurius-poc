@@ -106,15 +106,6 @@ const schema = gql`
   type Query {
     Products: [Product!]!
   }
-
-  type Mutation {
-    add(x: Int!, y: Int!): Int!
-    createNotification(message: String!): Boolean!
-  }
-
-  type Subscription {
-    newNotification: String!
-  }
 `
 
 const products = [
@@ -218,44 +209,10 @@ const products = [
   },
 ]
 
-const NOTIFICATION = 'notification'
-
 const resolvers: IResolvers = {
   Query: {
     Products() {
       return products
-    },
-  },
-  Mutation: {
-    add(root, { x, y }, ctx, info) {
-      // root ~ {}
-      root
-      // x ~ number
-      x
-      // x ~ number
-      y
-      // ctx.authorization ~ string | undefined
-      ctx.authorization
-      // info ~ GraphQLResolveInfo
-      info
-
-      return x + y
-    },
-    createNotification(_root, { message }, { pubsub }) {
-      pubsub.publish({
-        topic: NOTIFICATION,
-        payload: {
-          newNotification: message,
-        },
-      })
-      return true
-    },
-  },
-  Subscription: {
-    newNotification: {
-      subscribe: (_root, _args, { pubsub }) => {
-        return pubsub.subscribe(NOTIFICATION)
-      },
     },
   },
 }
@@ -270,9 +227,4 @@ app.register(mercurius, {
 codegenMercurius(app, {
   targetPath: './src/graphql/generated.ts',
   operationsGlob: './src/graphql/operations/*.gql',
-  codegenConfig: {
-    loadersCustomParentTypes: {
-      Human: 'never',
-    },
-  },
 }).catch(console.error)

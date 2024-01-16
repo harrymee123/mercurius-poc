@@ -20,9 +20,6 @@ export type ResolverFn<TResult, TParent, TContext, TArgs> = (
 ) =>
   | Promise<import('mercurius-codegen').DeepPartial<TResult>>
   | import('mercurius-codegen').DeepPartial<TResult>
-export type RequireFields<T, K extends keyof T> = Omit<T, K> & {
-  [P in K]-?: NonNullable<T[P]>
-}
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string
@@ -127,26 +124,6 @@ export type Product = {
 export type Query = {
   __typename?: 'Query'
   Products: Array<Product>
-}
-
-export type Mutation = {
-  __typename?: 'Mutation'
-  add: Scalars['Int']
-  createNotification: Scalars['Boolean']
-}
-
-export type MutationaddArgs = {
-  x: Scalars['Int']
-  y: Scalars['Int']
-}
-
-export type MutationcreateNotificationArgs = {
-  message: Scalars['String']
-}
-
-export type Subscription = {
-  __typename?: 'Subscription'
-  newNotification: Scalars['String']
 }
 
 export type ResolverTypeWrapper<T> = Promise<T> | T
@@ -261,8 +238,6 @@ export type ResolversTypes = {
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>
   Product: ResolverTypeWrapper<Product>
   Query: ResolverTypeWrapper<{}>
-  Mutation: ResolverTypeWrapper<{}>
-  Subscription: ResolverTypeWrapper<{}>
 }
 
 /** Mapping between all available schema types and the resolvers parents */
@@ -279,8 +254,6 @@ export type ResolversParentTypes = {
   Boolean: Scalars['Boolean']
   Product: Product
   Query: {}
-  Mutation: {}
-  Subscription: {}
 }
 
 export type SEOResolvers<
@@ -497,36 +470,6 @@ export type QueryResolvers<
   Products?: Resolver<Array<ResolversTypes['Product']>, ParentType, ContextType>
 }
 
-export type MutationResolvers<
-  ContextType = MercuriusContext,
-  ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']
-> = {
-  add?: Resolver<
-    ResolversTypes['Int'],
-    ParentType,
-    ContextType,
-    RequireFields<MutationaddArgs, 'x' | 'y'>
-  >
-  createNotification?: Resolver<
-    ResolversTypes['Boolean'],
-    ParentType,
-    ContextType,
-    RequireFields<MutationcreateNotificationArgs, 'message'>
-  >
-}
-
-export type SubscriptionResolvers<
-  ContextType = MercuriusContext,
-  ParentType extends ResolversParentTypes['Subscription'] = ResolversParentTypes['Subscription']
-> = {
-  newNotification?: SubscriptionResolver<
-    ResolversTypes['String'],
-    'newNotification',
-    ParentType,
-    ContextType
-  >
-}
-
 export type Resolvers<ContextType = MercuriusContext> = {
   SEO?: SEOResolvers<ContextType>
   Option?: OptionResolvers<ContextType>
@@ -537,8 +480,6 @@ export type Resolvers<ContextType = MercuriusContext> = {
   Variant?: VariantResolvers<ContextType>
   Product?: ProductResolvers<ContextType>
   Query?: QueryResolvers<ContextType>
-  Mutation?: MutationResolvers<ContextType>
-  Subscription?: SubscriptionResolvers<ContextType>
 }
 
 export type Loader<TReturn, TObj, TParams, TContext> = (
@@ -736,13 +677,6 @@ export interface Loaders<
     vendor?: LoaderResolver<Maybe<Scalars['String']>, Product, {}, TContext>
   }
 }
-export type addMutationVariables = Exact<{
-  x: Scalars['Int']
-  y: Scalars['Int']
-}>
-
-export type addMutation = { __typename?: 'Mutation'; add: number }
-
 export type productsQueryVariables = Exact<{ [key: string]: never }>
 
 export type productsQuery = {
@@ -750,73 +684,6 @@ export type productsQuery = {
   Products: Array<{ __typename?: 'Product'; id: number }>
 }
 
-export type createNotificationMutationVariables = Exact<{
-  message: Scalars['String']
-}>
-
-export type createNotificationMutation = {
-  __typename?: 'Mutation'
-  createNotification: boolean
-}
-
-export type newNotificationSubscriptionVariables = Exact<{
-  [key: string]: never
-}>
-
-export type newNotificationSubscription = {
-  __typename?: 'Subscription'
-  newNotification: string
-}
-
-export const addDocument = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'OperationDefinition',
-      operation: 'mutation',
-      name: { kind: 'Name', value: 'add' },
-      variableDefinitions: [
-        {
-          kind: 'VariableDefinition',
-          variable: { kind: 'Variable', name: { kind: 'Name', value: 'x' } },
-          type: {
-            kind: 'NonNullType',
-            type: { kind: 'NamedType', name: { kind: 'Name', value: 'Int' } },
-          },
-        },
-        {
-          kind: 'VariableDefinition',
-          variable: { kind: 'Variable', name: { kind: 'Name', value: 'y' } },
-          type: {
-            kind: 'NonNullType',
-            type: { kind: 'NamedType', name: { kind: 'Name', value: 'Int' } },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'add' },
-            arguments: [
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'x' },
-                value: { kind: 'Variable', name: { kind: 'Name', value: 'x' } },
-              },
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'y' },
-                value: { kind: 'Variable', name: { kind: 'Name', value: 'y' } },
-              },
-            ],
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<addMutation, addMutationVariables>
 export const productsDocument = {
   kind: 'Document',
   definitions: [
@@ -842,73 +709,6 @@ export const productsDocument = {
     },
   ],
 } as unknown as DocumentNode<productsQuery, productsQueryVariables>
-export const createNotificationDocument = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'OperationDefinition',
-      operation: 'mutation',
-      name: { kind: 'Name', value: 'createNotification' },
-      variableDefinitions: [
-        {
-          kind: 'VariableDefinition',
-          variable: {
-            kind: 'Variable',
-            name: { kind: 'Name', value: 'message' },
-          },
-          type: {
-            kind: 'NonNullType',
-            type: {
-              kind: 'NamedType',
-              name: { kind: 'Name', value: 'String' },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'createNotification' },
-            arguments: [
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'message' },
-                value: {
-                  kind: 'Variable',
-                  name: { kind: 'Name', value: 'message' },
-                },
-              },
-            ],
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  createNotificationMutation,
-  createNotificationMutationVariables
->
-export const newNotificationDocument = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'OperationDefinition',
-      operation: 'subscription',
-      name: { kind: 'Name', value: 'newNotification' },
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          { kind: 'Field', name: { kind: 'Name', value: 'newNotification' } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  newNotificationSubscription,
-  newNotificationSubscriptionVariables
->
 declare module 'mercurius' {
   interface IResolvers
     extends Resolvers<import('mercurius').MercuriusContext> {}
