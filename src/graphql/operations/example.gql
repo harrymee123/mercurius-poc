@@ -1,0 +1,17 @@
+mutation add($x: Int!, $y: Int!) {
+  add(x: $x, y: $y)
+}
+
+query products {
+  Products {
+    id
+  }
+}
+
+mutation createNotification($message: String!) {
+  createNotification(message: $message)
+}
+
+subscription newNotification {
+  newNotification
+}
