@@ -56,45 +56,47 @@ export const productData = [
     totalInventory: 100,
     trackingParameters: 'tracking=urlparams',
     updatedAt: '2019-09-07T15:50:00Z',
-    variantBySelectedOptions: {
-      availableForSale: true,
-      barcode: 'barcode',
-      compareAtPrice: {
-        amount: 10,
-        currencyCode: 'GBP',
-      },
-      currentlyNotInStock: false,
-      id: 2,
-      image: {
-        altText: 'Alt Text',
-        height: 100,
-        id: 1,
-        url: 'https://google.com',
-        width: 100,
-      },
-      metafield: '?',
-      metafields: '?',
-      price: 5,
-      product: {
-        id: 1,
-      },
-      quantityAvailable: 5,
-      requiresShipping: false,
-      selectedOptions: [
-        {
-          name: 'optionName',
-          value: 'optionValue',
+    variants: [
+      {
+        availableForSale: true,
+        barcode: 'barcode',
+        compareAtPrice: {
+          amount: 10,
+          currencyCode: 'GBP',
         },
-      ],
-      sku: 'PRODUCT_SKU',
-      title: 'Variant Title',
-      unitPrice: {
-        amount: 10,
-        currencyCode: 'GBP',
+        currentlyNotInStock: false,
+        id: 2,
+        image: {
+          altText: 'Alt Text',
+          height: 100,
+          id: 1,
+          url: 'https://google.com',
+          width: 100,
+        },
+        metafield: '?',
+        metafields: '?',
+        price: 5,
+        product: {
+          id: 1,
+        },
+        quantityAvailable: 5,
+        requiresShipping: false,
+        selectedOptions: [
+          {
+            name: 'optionName',
+            value: 'optionValue',
+          },
+        ],
+        sku: 'PRODUCT_SKU',
+        title: 'Variant Title',
+        unitPrice: {
+          amount: 10,
+          currencyCode: 'GBP',
+        },
+        weight: 100,
+        weightUnit: 'GRAMS',
       },
-      weight: 100,
-      weightUnit: 'GRAMS',
-    },
+    ],
     vendor: 'Vendor Name',
   },
 ]
