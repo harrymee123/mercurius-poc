@@ -16,7 +16,7 @@ export class ApiStack extends Stack {
     new CfnOutput(this, 'GatewayApiUrl', { value: httpGateway.url as string });
 
     const graphqlLambda = new NodejsFunction(this, `graphqlLambda`, {
-        entry: './src/graphql.js',
+        entry: './src/graphql.ts',
         handler: 'default',
         runtime: Runtime.NODEJS_20_X,
         bundling: {
