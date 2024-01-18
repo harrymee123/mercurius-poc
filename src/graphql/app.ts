@@ -1,7 +1,6 @@
 import { resolvers, typeDefs } from './schema/index'
 
 import Fastify from 'fastify'
-import { codegenMercurius } from 'mercurius-codegen'
 import mercurius from 'mercurius'
 
 export const app = Fastify({
@@ -11,10 +10,7 @@ export const app = Fastify({
 app.register(mercurius, {
   schema: typeDefs,
   resolvers,
+  path: '/'
 })
 
-codegenMercurius(app, {
-  targetPath: './src/schema/generated.ts',
-}).catch(console.error)
-
-app.listen({ port: 8000 })
+export default app
