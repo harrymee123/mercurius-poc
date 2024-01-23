@@ -33,6 +33,11 @@ export const productData = [
         name: 'option',
         values: ['value', 'another value'],
       },
+      {
+        id: 2,
+        name: 'option2',
+        values: ['value2', 'another value2'],
+      },
     ],
     priceRange: {
       maxVariantPrice: {

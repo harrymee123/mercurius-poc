@@ -67,7 +67,7 @@ export const ProductTypes = `
     metafield: String
     metafields: String
     onlineStoreUrl: String
-    options: [Option!]
+    options(id: Int): [Option]
     priceRange: PriceRange!
     productType: String
     publishedAt: String
