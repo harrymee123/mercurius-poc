@@ -2,7 +2,7 @@
   "name": "cdk",
   "version": "0.1.0",
   "scripts": {
-    "build": "tsc",
+    "dev": "tsm src/graphql/app.ts",
     "build:server": "tsc -p tsconfig.server.json",
     "watch": "tsc -w",
     "test": "jest",

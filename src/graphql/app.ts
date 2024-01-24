@@ -1,3 +1,4 @@
+import { codegenMercurius, gql } from 'mercurius-codegen'
 import { resolvers, typeDefs } from './schema/index'
 
 import Fastify from 'fastify'
@@ -12,5 +13,9 @@ app.register(mercurius, {
   resolvers,
   path: '/'
 })
+
+codegenMercurius(app, {
+  targetPath: './src/graphql/generated.ts',
+}).catch(console.error)
 
 export default app

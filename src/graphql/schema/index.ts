@@ -1,4 +1,4 @@
-import { ProductQuery, ProductResolvers, ProductTypes } from './product'
+import { ProductQuery, ProductResolvers, ProductTypes } from './product/index'
 
 import { gql } from 'mercurius-codegen'
 
