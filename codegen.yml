@@ -1,6 +1,6 @@
 generates:
   src/graphql/schema/product/types.ts:
     schema:
-    - src/graphql/schema/product/schema.graphql
+    - src/graphql/schema/product/schema.gql
     plugins:
       - typescript
