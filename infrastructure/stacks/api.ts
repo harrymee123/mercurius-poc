@@ -8,7 +8,7 @@ import { Runtime } from 'aws-cdk-lib/aws-lambda'
 
 export class ApiStack extends Stack {
   constructor(scope: Construct) {
-    super(scope)
+    super(scope, 'mercurius-graphql-api')
 
     const httpGateway = new HttpApi(this, `graphqlApi`, { apiName: 'graphqlApiName' })
 
@@ -19,9 +19,6 @@ export class ApiStack extends Stack {
         entry: './src/graphql.ts',
         handler: 'default',
         runtime: Runtime.NODEJS_20_X,
-        bundling: {
-            loader: { ".node": "file" },
-        }
       })
       
     const lambdaIntegration = new HttpLambdaIntegration(
@@ -30,9 +27,9 @@ export class ApiStack extends Stack {
       );
 
     httpGateway.addRoutes({
-        path: '/',
-        methods: [HttpMethod.ANY],
-        integration: lambdaIntegration,
-      });
+      path: '/',
+      methods: [HttpMethod.ANY],
+      integration: lambdaIntegration,
+    });
   }
 }
