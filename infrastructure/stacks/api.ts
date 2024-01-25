@@ -9,7 +9,7 @@ import { Runtime } from 'aws-cdk-lib/aws-lambda'
 export class ApiStack extends Stack {
   constructor(scope: Construct) {
     super(scope)
-    
+
     const httpGateway = new HttpApi(this, `graphqlApi`, { apiName: 'graphqlApiName' })
 
     new CfnOutput(this, 'GatewayApiId', { value: httpGateway.httpApiId });
@@ -31,7 +31,7 @@ export class ApiStack extends Stack {
 
     httpGateway.addRoutes({
         path: '/',
-        methods: [HttpMethod.POST],
+        methods: [HttpMethod.ANY],
         integration: lambdaIntegration,
       });
   }

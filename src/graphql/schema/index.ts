@@ -1,10 +1,8 @@
-import { ProductQuery, ProductResolvers, ProductTypes } from './product/index'
+import { ProductQuery, ProductResolvers, ProductSchema } from './product/index'
 
-import { gql } from 'mercurius-codegen'
-
-export const typeDefs = gql`
+export const schema = `
   type Query
-  ${ProductTypes}
+  ${ProductSchema}
 `
 
 export const resolvers = {
