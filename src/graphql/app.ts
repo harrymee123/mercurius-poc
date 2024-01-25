@@ -10,7 +10,8 @@ export const app = Fastify({
 app.register(mercurius, {
   schema,
   resolvers,
-  path: '/'
+  path: '/',
+  graphiql: true
 })
 
 export default app
