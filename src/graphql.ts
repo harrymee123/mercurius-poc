@@ -1,6 +1,10 @@
-import { app } from '../build/app'
-import { awsLambdaFastify } from "@fastify/aws-lambda"
+import { app } from "../build/app";
+import { awsLambdaFastify } from "@fastify/aws-lambda";
 
-const handler = awsLambdaFastify(app)
+const proxy = awsLambdaFastify(app);
 
-export default handler
+export const handler = (event: any, context: any) => {
+  console.log(event);
+  console.log(context);
+  return proxy;
+};

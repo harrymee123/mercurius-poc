@@ -27,6 +27,7 @@
     "@graphql-codegen/cli": "^5.0.0",
     "@graphql-tools/apollo-engine-loader": "^8.0.0",
     "@graphql-typed-document-node/core": "^3.2.0",
+    "@types/aws-lambda": "^8.10.133",
     "@types/node": "^20.11.3",
     "@types/tap": "^15.0.11",
     "aws-cdk-lib": "2.121.1",
